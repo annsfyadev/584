@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animal Management Page</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .btn-action {
+            margin-right: 5px;
+        }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        .table-wrapper {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center">Animal Management Page</h2>
+
+        <!-- Add Animal Button -->
+        <div class="d-flex justify-content-end mb-4">
+            <button class="btn btn-dark btn-action" data-bs-toggle="modal" data-bs-target="#addAnimalModal">Add Animal</button>
+        </div>
+
+        <!-- Animal Table -->
+        <h4>Animal List</h4>
+        <div class="table-wrapper">
+            <table class="table table-bordered table-striped">
+                <thead class="table-light">
+                    <tr>
+                        <th>Animal ID</th>
+                        <th>Plot ID</th>
+                        <th>Animal Type</th>
+                        <th>Health Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Example Data -->
+                    <tr>
+                        <td>1</td>
+                        <td>101</td>
+                        <td>Cattle</td>
+                        <td>Healthy</td>
+                        <td>
+                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editAnimalModal">Edit</button>
+                            <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteAnimalModal">Delete</button>
+                        </td>
+                    </tr>
+                    <!-- Repeat for other animals -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Add Animal Modal -->
+    <div class="modal fade" id="addAnimalModal" tabindex="-1" aria-labelledby="addAnimalModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addAnimalModalLabel">Add New Animal</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="add_animal.php">
+                        <div class="mb-3">
+                            <label for="plot" class="form-label">Select Plot</label>
+                            <select class="form-select" id="plot" name="plot_id">
+                                <!-- Dynamic Plot options -->
+                                <option value="101">Plot 1</option>
+                                <option value="102">Plot 2</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="animalType" class="form-label">Select Animal Type</label>
+                            <select class="form-select" id="animalType" name="animal_type_id">
+                                <!-- Dynamic AnimalType options -->
+                                <option value="1">Cattle</option>
+                                <option value="2">Goat</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="healthStatus" class="form-label">Health Status</label>
+                            <input type="text" class="form-control" id="healthStatus" name="health_status" required>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-dark">Add Animal</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Placeholder for Edit and Delete Modals -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
