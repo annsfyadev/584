@@ -12,32 +12,56 @@
         }
 
         .table-wrapper {
+            background: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             margin-top: 20px;
         }
 
         th {
             background-color: #f8f9fa;
         }
+
+        .table-name {
+            font-size: 1.5rem;
+            margin-bottom: 0;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2 class="text-center">Crop Management Page</h2>
-
-        <!-- Add Crop Button -->
-        <div class="d-flex justify-content-end mb-4">
-            <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addCropModal">Add Crop</button>
-        </div>
-
-        <!-- Crop Table -->
-        <h4>Crop List</h4>
         <div class="table-wrapper">
+            <h2 class="text-center">Crops Management</h2>
+            <div class="d-flex justify-content-between align-items-center my-3">
+                <h3 class="table-name">Crops List</h3>
+                <!-- Button to trigger modal -->
+                <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addCropModal">Add Crop</button>
+            </div>
+            <div class="d-flex justify-content-between align-items-center my-3">
+                <div>
+                    <label>Show 
+                        <select class="form-select form-select-sm d-inline w-auto">
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                        entries
+                    </label>
+                </div>
+            </div>
+
+            <!-- Crop Table -->
             <table class="table table-bordered table-striped">
                 <thead class="table-light">
                     <tr>
                         <th>Crop ID</th>
                         <th>Plot ID</th>
                         <th>Crop Type</th>
+                        <th>Planting Date</th>
+                        <th>Harvest Date</th>
+                        <th>Yield</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -47,6 +71,9 @@
                         <td>1</td>
                         <td>101</td>
                         <td>Rice</td>
+                        <td>2024-11-15</td>
+                        <td>2025-01-30</td>
+                        <td>50 kg</td>
                         <td>
                             <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editCropModal">Edit</button>
                             <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteCropModal">Delete</button>
@@ -55,6 +82,20 @@
                     <!-- Repeat for other crops -->
                 </tbody>
             </table>
+
+            <!-- Pagination and Showing entries info -->
+            <div class="d-flex justify-content-between align-items-center mt-3">
+                <div>Showing 1 to 10 of 31 entries (filtered from 31 total entries)</div>
+                <nav>
+                    <ul class="pagination mb-0">
+                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                    </ul>
+                </nav>
+            </div>
         </div>
     </div>
 
@@ -80,9 +121,21 @@
                             <label for="cropType" class="form-label">Select Crop Type</label>
                             <select class="form-select" id="cropType" name="crop_type_id">
                                 <!-- Dynamic Crop Type options -->
-                                <option value="1">Rice</option>
+                                <option value="1">Corn</option>
                                 <option value="2">Wheat</option>
                             </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="plantingDate" class="form-label">Planting Date</label>
+                            <input type="date" class="form-control" id="plantingDate" name="planting_date">
+                        </div>
+                        <div class="mb-3">
+                            <label for="harvestDate" class="form-label">Harvest Date</label>
+                            <input type="date" class="form-control" id="harvestDate" name="harvest_date">
+                        </div>
+                        <div class="mb-3">
+                            <label for="yield" class="form-label">Yield</label>
+                            <input type="text" class="form-control" id="yield" name="yield">
                         </div>
                         <div class="d-flex justify-content-end">
                             <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">Cancel</button>

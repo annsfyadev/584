@@ -16,22 +16,46 @@
         }
 
         .table-wrapper {
+            background: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             margin-top: 20px;
+        }
+
+        th {
+            background-color: #f8f9fa;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2 class="text-center">Animal Management Page</h2>
-
-        <!-- Add Animal Button -->
-        <div class="d-flex justify-content-end mb-4">
-            <button class="btn btn-dark btn-action" data-bs-toggle="modal" data-bs-target="#addAnimalModal">Add Animal</button>
-        </div>
-
-        <!-- Animal Table -->
-        <h4>Animal List</h4>
         <div class="table-wrapper">
+            <h2 class="text-center">Animal Management</h2>
+            
+            <!-- Title and Add Animal Button -->
+            <div class="d-flex justify-content-between align-items-center my-3">
+                <h4 class="mb-0">Animal List</h4>
+                <!-- Button to open the Add Animal modal -->
+                <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addAnimalModal">Add Animal</button>
+            </div>
+            
+            <!-- Show Entries Dropdown -->
+            <div class="d-flex justify-content-between align-items-center my-3">
+                <div>
+                    <label>Show 
+                        <select class="form-select form-select-sm d-inline w-auto">
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                        entries
+                    </label>
+                </div>
+            </div>
+
+            <!-- Animal Table -->
             <table class="table table-bordered table-striped">
                 <thead class="table-light">
                     <tr>
@@ -57,6 +81,20 @@
                     <!-- Repeat for other animals -->
                 </tbody>
             </table>
+            
+            <!-- Pagination and Showing entries info -->
+            <div class="d-flex justify-content-between align-items-center mt-3">
+                <div>Showing 1 to 10 of 31 entries (filtered from 31 total entries)</div>
+                <nav>
+                    <ul class="pagination mb-0">
+                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                    </ul>
+                </nav>
+            </div>
         </div>
     </div>
 

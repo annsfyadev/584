@@ -31,17 +31,24 @@
     <div class="container my-4">
         <div class="content-box">
             <h2 class="text-center">Animal Produce Page</h2>
-            
-            <!-- Button to go back to the main crops page -->
-            <div class="d-flex justify-content-start">
-                <button class="btn btn-secondary" onclick="window.location.href='animal_mainpage.html'">Back to Animal Main Page</button>
-            </div>
-
             <!-- Title and Add Produce Button -->
             <div class="d-flex justify-content-between align-items-center my-3">
                 <h4 class="mb-0">Animal Produce List</h4>
                 <!-- Button to open the Add Produce modal -->
                 <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addProduceModal">Add Produce</button>
+            </div>
+            <div class="d-flex justify-content-between align-items-center my-3">
+                <div>
+                    <label>Show 
+                        <select class="form-select form-select-sm d-inline w-auto">
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                        entries
+                    </label>
+                </div>
             </div>
             
             <!-- Table for Animal Produce -->
@@ -50,9 +57,9 @@
                     <thead class="table-light">
                         <tr>
                             <th>Animal Produce ID</th>
-                            <th>Quantity</th>
-                            <th>Animal Produce Date</th>
                             <th>Animal Type</th>
+                            <th>Animal Produce Date</th>
+                            <th>Quantity</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -60,9 +67,9 @@
                         <!-- Example Data - Dynamically populate this from your database -->
                         <tr>
                             <td>001</td>
-                            <td>200kg Milk</td>
+                            <td>cow</td>
                             <td>2024-11-01</td>
-                            <td>Cow</td>
+                            <td>200kg Milk</td>
                             <td>
                                 <!-- Actions for Animal Produce (Edit/Delete) -->
                                 <button class="btn btn-primary">Edit</button>
@@ -72,6 +79,17 @@
                         <!-- Repeat rows for each Animal Produce -->
                     </tbody>
                 </table>
+                <!-- Pagination and Showing entries info -->
+                <div class="d-flex justify-content-between align-items-center mt-3">
+                    <div>Showing 1 to 10 of 31 entries (filtered from 31 total entries)</div>
+                    <nav>
+                        <ul class="pagination mb-0">
+                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
         </div>
     </div>
@@ -86,14 +104,7 @@
                 </div>
                 <div class="modal-body">
                     <form>
-                        <div class="mb-3">
-                            <label for="animalProduceQuantity" class="form-label">Quantity</label>
-                            <input type="text" class="form-control" id="animalProduceQuantity" placeholder="Enter quantity (e.g., 100kg Milk)">
-                        </div>
-                        <div class="mb-3">
-                            <label for="animalProduceDate" class="form-label">Animal Produce Date</label>
-                            <input type="date" class="form-control" id="animalProduceDate">
-                        </div>
+                        
                         <div class="mb-3">
                             <label for="animalType" class="form-label">Animal Type</label>
                             <select class="form-select" id="animalType">
@@ -102,6 +113,13 @@
                                 <option value="Sheep">Sheep</option>
                                 <option value="Chicken">Chicken</option>
                             </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="animalProduceDate" class="form-label">Animal Produce Date</label>
+                            <input type="date" class="form-control" id="animalProduceDate">
+                        </div><div class="mb-3">
+                            <label for="animalProduceQuantity" class="form-label">Quantity</label>
+                            <input type="text" class="form-control" id="animalProduceQuantity" placeholder="Enter quantity (e.g., 100kg Milk)">
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
