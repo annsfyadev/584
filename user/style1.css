@@ -34,15 +34,15 @@ ul li a{
 }
 
 ul li a:hover{
-    color: #ff7200;
+    color: #fff;
 }
 
 
 .btn{
     width: 100px;
     height: 40px;
-    background: #ff7200;
-    border: 2px solid #ff7200;
+    background: #fff;
+    border: 2px solid #fff;
     margin-top: 13px;
     color: #fff;
     font-size: 15px;
@@ -95,7 +95,7 @@ ul li a:hover{
 .content .cn{
     width: 160px;
     height: 40px;
-    background: #ff7200;
+    background: #fff;
     border: none;
     margin-bottom: 10px;
     margin-left: 20px;
@@ -117,7 +117,7 @@ ul li a:hover{
 }
 
 .content span{
-    color: #ff7200;
+    color: #fff;
     font-size: 65px
 }
 
