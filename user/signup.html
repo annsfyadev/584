@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="style3.css">
+</head>
+
+<body>
+
+<div class="main">
+    <?php include("navbar.php"); ?>
+
+    <div class="form">
+        <h2>Registration</h2>
+        <form action="submit_signup.php" method="POST">
+            <div class="user-details">
+                <div class="input-box">
+                    <input type="text" name="contractor_Name" required placeholder="Contractor Name" class="box">
+                </div>
+                <div class="input-box">
+                    <input type="text" name="contractor_Username" required placeholder="Contractor Username" class="box">
+                </div>
+                <div class="input-box">
+                    <input type="text" name="contractor_ID" required placeholder="Contractor ID/IC" class="box">
+                </div>
+                <div class="input-box">
+                    <input type="text" name="contractor_Department" required placeholder="Contractor Department/Company" class="box">
+                </div>
+                <div class="input-box">
+                    <input type="email" name="contractor_Email" required placeholder="Contractor Email" class="box" oninput="this.value = this.value.replace(/[\s]/g, '')">
+                </div>
+                <div class="input-box">
+                    <input type="password" name="contractor_Password" required placeholder="Enter Password" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
+                </div>
+                <div class="input-box">
+    <label for="nationality">Nationality:</label>
+    <select name="nationality" class="box" required>
+        <option value="" disabled selected>Select your nationality</option>
+        
+</div>
+</div>
+
+            <!-- Register button -->
+            <div class="button">
+                <input type="submit" value="Register" onclick="return confirmsignup();">
+            </div>
+        </form>
+    </div>
+
+</div>
+
+<footer>
+    <p>Miri Crude Oil Terminal (MCOT). All rights reserved.</p>
+</footer>
+
+<script>
+    function confirmsignup() {
+        return confirm("Are you sure you want to register?");
+    }
+</script>
+</body>
+</html>
