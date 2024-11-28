@@ -2,46 +2,38 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
     <link rel="stylesheet" href="style2.css">
 </head>
 
 <body>
+    <div class="main">
+        <!-- Navbar will be dynamically loaded here -->
+        <div id="navbar"></div>
 
-<div class="main">
-    <?php include("navbar.php"); ?>
 
     <div class="form">
         <h2>Registration</h2>
-        <form action="submit_signup.php" method="POST">
+        <form action="submit_signup.html" method="POST">
             <div class="user-details">
                 <div class="input-box">
-                    <input type="text" name="contractor_Name" required placeholder="Contractor Name" class="box">
+                    <input type="text" name="FirstName" required placeholder="First Name" class="box">
                 </div>
                 <div class="input-box">
-                    <input type="text" name="contractor_Username" required placeholder="Contractor Username" class="box">
+                    <input type="text" name="LastName" required placeholder="Last Name" class="box">
                 </div>
                 <div class="input-box">
-                    <input type="text" name="contractor_ID" required placeholder="Contractor ID/IC" class="box">
+                    <input type="text" name="PhoneNumber" required placeholder="PhoneNumber" class="box">
+                </div>
+
+                <div class="input-box">
+                    <input type="email" name="EmailAddress" required placeholder="Email Address" class="box" oninput="this.value = this.value.replace(/[\s]/g, '')">
                 </div>
                 <div class="input-box">
-                    <input type="text" name="contractor_Department" required placeholder="Contractor Department/Company" class="box">
+                    <input type="password" name="Password" required placeholder="Enter Password" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
                 </div>
-                <div class="input-box">
-                    <input type="email" name="contractor_Email" required placeholder="Contractor Email" class="box" oninput="this.value = this.value.replace(/[\s]/g, '')">
-                </div>
-                <div class="input-box">
-                    <input type="password" name="contractor_Password" required placeholder="Enter Password" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
-                </div>
-                <div class="input-box">
-    <label for="nationality">Nationality:</label>
-    <select name="nationality" class="box" required>
-        <option value="" disabled selected>Select your nationality</option>
-        
-</div>
-</div>
+            
+    </div>
 
             <!-- Register button -->
             <div class="button">
@@ -56,6 +48,16 @@
     function confirmsignup() {
         return confirm("Are you sure you want to register?");
     }
+
+        // Dynamically load navbar
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch("navbar.html")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("navbar").innerHTML = data;
+                })
+                .catch(error => console.error("Error loading navbar:", error));
+        });
 </script>
 </body>
 </html>
