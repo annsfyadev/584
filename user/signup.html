@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Home Page</title>
+    <link rel="stylesheet" href="style2.css">
+</head>
+
+<body>
+    <div class="main">
+        <!-- Navbar will be dynamically loaded here -->
+        <div id="navbar"></div>
+
+
+    <div class="form">
+        <h2>Registration</h2>
+        <form action="submit_signup.html" method="POST">
+            <div class="user-details">
+                <div class="input-box">
+                    <input type="text" name="FirstName" required placeholder="First Name" class="box">
+                </div>
+                <div class="input-box">
+                    <input type="text" name="LastName" required placeholder="Last Name" class="box">
+                </div>
+                <div class="input-box">
+                    <input type="text" name="PhoneNumber" required placeholder="PhoneNumber" class="box">
+                </div>
+
+                <div class="input-box">
+                    <input type="email" name="EmailAddress" required placeholder="Email Address" class="box" oninput="this.value = this.value.replace(/[\s]/g, '')">
+                </div>
+                <div class="input-box">
+                    <input type="password" name="Password" required placeholder="Enter Password" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
+                </div>
+            
+    </div>
+
+            <!-- Register button -->
+            <div class="button">
+                <input type="submit" value="Register" onclick="return confirmsignup();">
+            </div>
+        </form>
+    </div>
+
+</div>
+
+<script>
+    function confirmsignup() {
+        return confirm("Are you sure you want to register?");
+    }
+
+        // Dynamically load navbar
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch("navbar.html")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("navbar").innerHTML = data;
+                })
+                .catch(error => console.error("Error loading navbar:", error));
+        });
+</script>
+</body>
+</html>
