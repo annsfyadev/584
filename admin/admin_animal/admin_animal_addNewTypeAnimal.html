@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Animal Type</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            margin-top: 20px;
+        }
+
+        .form-wrapper {
+            background: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary {
+            background-color: #0047AB;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #003480;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-wrapper">
+            <h2 class="text-center">Add New Animal Type</h2>
+            <form method="POST" action="add_new_animal_type.php">
+                <!-- Animal Type ID -->
+                <div class="mb-3">
+                    <label for="animalTypeId" class="form-label">Animal Type ID</label>
+                    <input type="number" class="form-control" id="animalTypeId" name="animal_type_id" placeholder="Enter Animal Type ID" required>
+                </div>
+
+                <!-- Animal ID -->
+                <div class="mb-3">
+                    <label for="animalId" class="form-label">Animal ID</label>
+                    <input type="number" class="form-control" id="animalId" name="animal_id" placeholder="Enter Animal ID" required>
+                </div>
+
+                <!-- Animal Type Name -->
+                <div class="mb-3">
+                    <label for="animalTypeName" class="form-label">Animal Type Name</label>
+                    <input type="text" class="form-control" id="animalTypeName" name="animal_type_name" placeholder="Enter Animal Type Name" required>
+                </div>
+
+                <!-- Form Action Buttons -->
+                <div class="d-flex justify-content-end">
+                    <button type="reset" class="btn btn-secondary me-2">Reset</button>
+                    <button type="submit" class="btn btn-primary">Add Animal Type</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS & Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
