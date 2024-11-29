@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Dashboard</title>
+    <title>Admin Dashboard</title>
     <link rel="stylesheet" href="styles1.css"> <!-- Link to your CSS file -->
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             display: flex;
-            height: 100vh; /* Ensures full viewport height */
+            height: 100vh;
         }
 
         /* Sidebar styling */
@@ -18,11 +18,11 @@
             width: 250px;
             background-color: #f4f4f4;
             padding: 15px;
-            height: 100vh; /* Ensures sidebar is full height */
+            height: 100vh;
             position: fixed;
             top: 0;
             left: 0;
-            overflow-y: auto; /* Prevents sidebar content from overflowing */
+            overflow-y: auto;
         }
 
         .sidebar h2 {
@@ -30,7 +30,7 @@
             font-size: 1.6em;
             margin-bottom: 20px;
             font-weight: bold;
-            color: #ff7200; /* Apply #ff7200 to the sidebar title */
+            color: #ff7200;
         }
 
         .sidebar .section {
@@ -40,7 +40,7 @@
         .sidebar .section h3 {
             font-size: 1.2em;
             margin-bottom: 10px;
-            color: #ff7200; /* Apply #ff7200 to section titles */
+            color: #ff7200;
         }
 
         .sidebar a {
@@ -56,41 +56,34 @@
 
         .sidebar a:hover {
             background-color: #ddd;
-            color: #ff7200; /* Change text color to #ff7200 on hover */
+            color: #ff7200;
         }
 
         .content {
-            margin-left: 260px; /* Space for the sidebar */
+            margin-left: 260px;
             padding: 20px;
             flex: 1;
             height: 100vh;
-            overflow-y: auto; /* Ensures content scrolls if too large */
+            overflow-y: auto;
         }
 
-        /* Style for Dashboard Welcome */
         .content h1 {
             font-size: 2.2em;
-            color: black; /* Apply the primary color to header */
+            color: black;
             font-weight: bold;
+            text-align: center;
         }
 
-        .content p {
-            font-size: 1.1em;
-            color: #555;
-        }
-
-        /* Mockup Information Section */
+        /* Admin Dashboard Info Section */
         .dashboard-info {
             margin-top: 40px;
         }
 
         .dashboard-info h2 {
             font-size: 1.5em;
-            color: #ff7200; /* Apply the primary color to section titles */
+            color: #ff7200;
             margin-bottom: 20px;
             text-align: center;
-            
-            
         }
 
         .info-box {
@@ -107,19 +100,19 @@
             text-align: center;
             flex: 1;
             margin: 0 10px;
-            border-left: 5px solid #ff7200; /* Border color set to #ff7200 */
+            border-left: 5px solid #ff7200;
         }
 
         .info-box .box h3 {
             font-size: 1.2em;
-            color: #ff7200; /* Font color set to #ff7200 */
+            color: #ff7200;
             margin-bottom: 10px;
         }
 
         .info-box .box p {
             font-size: 1.5em;
             font-weight: bold;
-            color: #ff7200; /* Font color set to #ff7200 */
+            color: #ff7200;
         }
 
         /* Buttons or action items styling */
@@ -142,31 +135,34 @@
 <body>
 
     <div class="sidebar">
-        <h2>CFS</h2>
+        <h2>Admin CFS</h2>
 
-        <!-- Farm Section -->
+        <!-- Farm Overview Section -->
         <div class="section">
-            <h3>Farm</h3>
-            <a href="#" data-file="farm/available_farm.html" aria-label="View Available Farms">Available Farms</a>
-            <a href="#" data-file="farm/myfarm.html" aria-label="View My Bookings">My Bookings</a>
+            <h3>Farm Overview</h3>
+            <a href="#" data-file="farm/manage_farm.html" aria-label="Manage Farms">Manage Farms</a>
         </div>
 
-        <!-- Tools Section -->
-        <div class="section">
-            <h3>Tools</h3>
-            <a href="#" data-file="tools/tools_mainpage.html" aria-label="Manage Borrowed Tools">Borrowed Tools</a>
+          <!-- Animal Overview Section -->
+          <div class="section">
+            <h3>Animal Management</h3>
+            <!-- <a href="#" data-file="admin_animal/admin_animal_mainpage.html" aria-label="Manage Animals">Overview</a> -->
+            <a href="#" data-file="admin_animal/admin_animal_viewAnimalManagement.html" aria-label="Manage Animal">View Animal</a>
+            <a href="#" data-file="admin_animal/admin_animal_viewAnimalProduce.html" aria-label="View Animal Produce ">View Animal Produce</a>
         </div>
 
-        <!-- Crops Section -->
+        <!-- Tool Management Section -->
         <div class="section">
-            <h3>Crops</h3>
-            <a href="#" data-file="crops/crops_mainpage.html" aria-label="Manage Crops">Crops Management</a>
+            <h3>Tool Management</h3>
+            <a href="#" data-file="tools/tool_list.html" aria-label="View Tools">Tool List</a>
+            <a href="#" data-file="tools/manage_tools.html" aria-label="Manage Tools">Manage Tools</a>
         </div>
 
-        <!-- Animals Section -->
+        <!-- System Settings Section -->
         <div class="section">
-            <h3>Animals</h3>
-            <a href="#" data-file="animal/animal_mainpage.html" aria-label="Manage Animals">Animal Management</a>
+            <h3>System Settings</h3>
+            <a href="#" data-file="settings/system_settings.html" aria-label="View System Settings">Settings</a>
+            <a href="#" data-file="settings/change_password.html" aria-label="Change Admin Password">Change Password</a>
         </div>
 
         <!-- Logout -->
@@ -176,32 +172,28 @@
     </div>
 
     <div class="content">
-        <h1 style="text-align: center;">Welcome Farmer</h1>
+        <h1>Welcome Admin</h1>
 
-        
-        <!-- Mockup Info Section -->
+        <!-- Admin Dashboard Info Section -->
         <div class="dashboard-info">
             <h2>Quick Overview</h2>
             <div class="info-box">
                 <div class="box">
-                    <h3>My Farm</h3>
-                    <p>1</p>
+                    <h3>Total Users</h3>
+                    <p>120</p>
                 </div>
                 <div class="box">
-                    <h3>Tools Borrowed</h3>
-                    <p>12</p>
+                    <h3>Total Farms</h3>
+                    <p>23</p>
                 </div>
                 <div class="box">
-                    <h3>My Animals</h3>
-                    <p>8</p>
+                    <h3>Total Tools</h3>
+                    <p>200</p>
                 </div>
-                <div class="box">
-                    <h3>My Crops</h3>
-                    <p>3</p>
-                </div>
+               
             </div>
         </div>
-   </div>
+    </div>
 
     <script>
         // Select all sidebar links
