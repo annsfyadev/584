@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Animal Management Page</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .btn-action {
+            margin-right: 5px;
+        }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        .table-wrapper {
+            background: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        th {
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="table-wrapper">
+            <h2 class="text-center">View Animal Management</h2>
+            
+            <!-- Title and Add Animal Button -->
+            <div class="d-flex justify-content-between align-items-center my-3">
+                <h4 class="mb-0">Animal List</h4>
+                <!-- Button to open the Add Animal modal -->
+                <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addAnimalModal">Add Animal</button>
+            </div>
+            
+            <!-- Show Entries Dropdown -->
+            <div class="d-flex justify-content-between align-items-center my-3">
+                <div>
+                    <label>Show 
+                        <select class="form-select form-select-sm d-inline w-auto">
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                        entries
+                    </label>
+                </div>
+            </div>
+
+            <!-- Animal Table -->
+            <table class="table table-bordered table-striped">
+                <thead class="table-light">
+                    <tr>
+                        <th>Animal ID</th>
+                        <th>Plot ID</th>
+                        <th>Animal Type</th>
+                        <th>Health Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Example Data -->
+                    <tr>
+                        <td>1</td>
+                        <td>101</td>
+                        <td>Cattle</td>
+                        <td>Healthy</td>
+                    </tr>
+                    <!-- Repeat for other animals -->
+                </tbody>
+            </table>
+
+            <!-- Pagination and Showing entries info -->
+            <div class="d-flex justify-content-between align-items-center mt-3">
+                <div>Showing 1 to 10 of 31 entries (filtered from 31 total entries)</div>
+                <nav>
+                    <ul class="pagination mb-0">
+                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS & Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+    <!-- Custom JS -->
+    <script>
+        // Add functionality for the modal buttons if needed
+        document.addEventListener('DOMContentLoaded', function() {
+            const editButtons = document.querySelectorAll('.edit-btn');
+            editButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const animalId = e.target.getAttribute('data-animal-id');
+                    const plotId = e.target.getAttribute('data-plot-id');
+                    const animalType = e.target.getAttribute('data-animal-type');
+                    const healthStatus = e.target.getAttribute('data-health-status');
+                    
+                    document.getElementById('animal_id').value = animalId;
+                    document.getElementById('plot').value = plotId;
+                    document.getElementById('animalType').value = animalType;
+                    document.getElementById('healthStatus').value = healthStatus;
+                });
+            });
+
+            const deleteButtons = document.querySelectorAll('.delete-btn');
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const animalId = e.target.getAttribute('data-animal-id');
+                    document.getElementById('deleteEntityId').value = animalId;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
