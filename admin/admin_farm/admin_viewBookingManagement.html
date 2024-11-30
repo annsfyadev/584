@@ -270,7 +270,7 @@
                     <td>${farmName}</td>
                     <td>${bookingPrice}</td>
                     <td>${requestDate}</td>
-                    <td>${status}</td>
+                    <td>class="text-${status === "Occupied" ? "success" : "danger"}">${status}</td>
                     <td>
                         <button class="btn btn-primary btn-sm edit-btn" data-bs-toggle="modal" data-bs-target="#editBookingModal">Edit</button>
                         <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteBookingModal">Delete</button>
@@ -287,7 +287,6 @@
         // Handle editing the booking
         document.addEventListener("click", function(e) {
             if (e.target.classList.contains("edit-btn")) {
-                // Fill the modal with existing booking data
                 const row = e.target.closest("tr");
                 const bookingId = row.cells[0].textContent;
                 const farmerEmail = row.cells[1].textContent;
@@ -297,7 +296,6 @@
                 const status = row.cells[5].textContent;
 
 
-                // Set values in the edit modal
                 document.getElementById("editBookingId").value = bookingId;
                 document.getElementById("editFarmerEmail").value = farmerEmail;
                 document.getElementById("editFarmName").value = farmName;

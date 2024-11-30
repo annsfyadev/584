@@ -122,10 +122,10 @@
                                 <td>Good</td>
                                 <td class="text-success">Occupied</td>
                                 <td>
-                                    <button class="btn btn-primary btn-sm edit-btn" data-bs-toggle="modal" data-bs-target="#editToosModal">Edit</button>
+                                    <button class="btn btn-primary btn-sm edit-btn" data-bs-toggle="modal" data-bs-target="#editFarmModal">Edit</button>
                                 </td>
                                 <td>
-                                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteToolModal">Delete</button>
+                                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteFarmModal">Delete</button>
                                 
                                 </td>
                             </tr>
@@ -192,7 +192,11 @@
                                     <option value="Occupied">Occupied</option>
                                 </select>
                             </div>
-                            <button type="submit" class="btn btn-dark">Add Farm</button>
+                            
+                            <div class="d-flex justify-content-end">
+                                <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-dark">Add Booking</button>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -200,7 +204,7 @@
         </div>
 
         <!-- Edit Farm Modal -->
-        <div class="modal fade" id="editToosModal" tabindex="-1" aria-labelledby="editFarmModalLabel" aria-hidden="true">
+        <div class="modal fade" id="editFarmModal" tabindex="-1" aria-labelledby="editFarmModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -209,6 +213,8 @@
                     </div>
                     <div class="modal-body">
                         <form id="editFarmForm">
+                            <input type="hidden" id="editFarmId">
+
                             <div class="mb-3">
                                 <label for="editFarmName" class="form-label">Farm Name</label>
                                 <input type="text" class="form-control" id="editFarmName" name="farmName" required>
@@ -244,7 +250,11 @@
                                     <option value="Occupied">Occupied</option>
                                 </select>
                             </div>
-                            <button type="submit" class="btn btn-primary">Save Changes</button>
+
+                            <div class="d-flex justify-content-end">
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        </div>
                         </form>
                     </div>
                 </div>
@@ -252,7 +262,7 @@
         </div>
 
         <!-- Delete Farm Modal -->
-        <div class="modal fade" id="deleteToolModal" tabindex="-1" aria-labelledby="deleteFarmModalLabel" aria-hidden="true">
+        <div class="modal fade" id="deleteFarmModal" tabindex="-1" aria-labelledby="deleteFarmModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -272,138 +282,143 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
         
         <script>
-             document.addEventListener("DOMContentLoaded", function () {
-    // Add farm event listener
-    document.getElementById("addFarmForm").addEventListener("submit", function (e) {
-        e.preventDefault();
+            document.addEventListener("DOMContentLoaded", function () {
+                // Add farm event listener
+                document.getElementById("addFarmForm").addEventListener("submit", function (e) {
+                    e.preventDefault();
 
-        // Get form inputs
-        const farmId = "GeneratedID"; // Replace this with actual ID logic if needed
-        const farmName = document.getElementById("farmName").value;
-        const location = document.getElementById("location").value;
-        const size = document.getElementById("size").value;
-        const waterSource = document.getElementById("waterSource").value;
-        const plotSize = document.getElementById("plotSize").value;
-        const plotType = document.getElementById("plotType").value;
-        const soilCondition = document.getElementById("soilCondition").value;
-        const status = document.getElementById("status").value;
+                    // Get form inputs
+                    const farmId = "GeneratedID"; 
+                    const farmName = document.getElementById("farmName").value;
+                    const location = document.getElementById("location").value;
+                    const size = document.getElementById("size").value;
+                    const waterSource = document.getElementById("waterSource").value;
+                    const plotSize = document.getElementById("plotSize").value;
+                    const plotType = document.getElementById("plotType").value;
+                    const soilCondition = document.getElementById("soilCondition").value;
+                    const status = document.getElementById("status").value;
 
-        // Create a new row
-        const table = document.querySelector("table tbody");
-        const newRow = document.createElement("tr");
-        newRow.innerHTML = `
-            <td>${farmId}</td>
-            <td>${farmName}</td>
-            <td>${location}</td>
-            <td>${size}</td>
-            <td>${waterSource}</td>
-            <td>${plotSize}</td>
-            <td>${plotType}</td>
-            <td>${soilCondition}</td>
-            <td class="text-${status === "Occupied" ? "success" : "danger"}">${status}</td>
-            <td>
-                <button class="btn btn-primary btn-sm edit-btn" data-bs-toggle="modal" data-bs-target="#editFarmModal">Edit</button>
-            </td>
-            <td>
-                <button class="btn btn-danger btn-sm delete-btn" data-bs-toggle="modal" data-bs-target="#deleteFarmModal">Delete</button>
-            </td>
-        `;
-        table.appendChild(newRow);
+                    // Create a new row
+                    const table = document.querySelector("table tbody");
+                    const newRow = document.createElement("tr");
+                    newRow.innerHTML = `
+                        <td>${farmId}</td>
+                        <td>${farmName}</td>
+                        <td>${location}</td>
+                        <td>${size}</td>
+                        <td>${waterSource}</td>
+                        <td>${plotSize}</td>
+                        <td>${plotType}</td>
+                        <td>${soilCondition}</td>
+                        <td class="text-${status === "Occupied" ? "success" : "danger"}">${status}</td>
+                        <td>
+                            <button class="btn btn-primary btn-sm edit-btn" data-bs-toggle="modal" data-bs-target="#editFarmModal">Edit</button>
+                            <button class="btn btn-danger btn-sm delete-btn" data-bs-toggle="modal" data-bs-target="#deleteFarmModal">Delete</button>
+                        </td>
+                    `;
+                    table.appendChild(newRow);
 
-        // Clear form inputs
-        document.getElementById("addFarmForm").reset();
+                    // Clear form inputs
+                    document.getElementById("addFarmForm").reset();
 
-        // Close the modal
-        const addModal = bootstrap.Modal.getInstance(document.getElementById("addFarmModal"));
-        addModal.hide();
-    });
+                    
+                });
+            });
+            
+            // Handle editing the farm
+            document.addEventListener("click", function (e) {
+                if (e.target.classList.contains("edit-btn")) {
+                    const row = e.target.closest("tr");
+                    const farmId = row.cells[0].textContent;
+                    const farmName = row.cells[1].textContent;
+                    const location = row.cells[2].textContent;
+                    const size = row.cells[3].textContent;
+                    const waterSource = row.cells[4].textContent;
+                    const plotSize = row.cells[5].textContent;
+                    const plotType = row.cells[6].textContent;
+                    const soilCondition = row.cells[7].textContent;
+                    const status = row.cells[8].textContent.trim();
 
-    // Handle editing the farm
-    document.addEventListener("click", function (e) {
-        if (e.target.classList.contains("edit-btn")) {
-            const row = e.target.closest("tr");
-            const farmId = row.cells[0].textContent;
-            const farmName = row.cells[1].textContent;
-            const location = row.cells[2].textContent;
-            const size = row.cells[3].textContent;
-            const waterSource = row.cells[4].textContent;
-            const plotSize = row.cells[5].textContent;
-            const plotType = row.cells[6].textContent;
-            const soilCondition = row.cells[7].textContent;
-            const status = row.cells[8].textContent.trim();
+                    document.getElementById("editFarmId").value = farmId;
+                    document.getElementById("editFarmName").value = farmName;
+                    document.getElementById("editLocation").value = location;
+                    document.getElementById("editSize").value = size;
+                    document.getElementById("editWaterSource").value = waterSource;
+                    document.getElementById("editPlotSize").value = plotSize;
+                    document.getElementById("editPlotType").value = plotType;
+                    document.getElementById("editSoilCondition").value = soilCondition;
+                    document.getElementById("editStatus").value = status;
+                }
+            });
 
-            // Populate edit modal fields
-            document.getElementById("editFarmId").value = farmId;
-            document.getElementById("editFarmName").value = farmName;
-            document.getElementById("editLocation").value = location;
-            document.getElementById("editSize").value = size;
-            document.getElementById("editWaterSource").value = waterSource;
-            document.getElementById("editPlotSize").value = plotSize;
-            document.getElementById("editPlotType").value = plotType;
-            document.getElementById("editSoilCondition").value = soilCondition;
-            document.getElementById("editStatus").value = status;
-        }
-    });
 
-    // Update the farm
-    document.getElementById("editFarmForm").addEventListener("submit", function (e) {
-        e.preventDefault();
+            // Handle form submission for editing
+            document.getElementById("editFarmForm").addEventListener("submit", function (e) {
+                e.preventDefault();
 
-        const farmId = document.getElementById("editFarmId").value;
-        const farmName = document.getElementById("editFarmName").value;
-        const location = document.getElementById("editLocation").value;
-        const size = document.getElementById("editSize").value;
-        const waterSource = document.getElementById("editWaterSource").value;
-        const plotSize = document.getElementById("editPlotSize").value;
-        const plotType = document.getElementById("editPlotType").value;
-        const soilCondition = document.getElementById("editSoilCondition").value;
-        const status = document.getElementById("editStatus").value;
+                // Update row with edited values
+                const farmId = document.getElementById("editFarmId").value;
+                const farmName = document.getElementById("editFarmName").value;
+                const location = document.getElementById("editLocation").value;
+                const size = document.getElementById("editSize").value;
+                const waterSource = document.getElementById("editWaterSource").value;
+                const plotSize = document.getElementById("editPlotSize").value;
+                const plotType = document.getElementById("editPlotType").value;
+                const soilCondition = document.getElementById("editSoilCondition").value;
+                const status = document.getElementById("editStatus").value;
 
-        const rows = document.querySelectorAll("table tbody tr");
-        rows.forEach(row => {
-            if (row.cells[0].textContent === farmId) {
-                row.cells[1].textContent = farmName;
-                row.cells[2].textContent = location;
-                row.cells[3].textContent = size;
-                row.cells[4].textContent = waterSource;
-                row.cells[5].textContent = plotSize;
-                row.cells[6].textContent = plotType;
-                row.cells[7].textContent = soilCondition;
-                row.cells[8].textContent = status;
-                row.cells[8].className = `text-${status === "Occupied" ? "success" : "danger"}`;
-            }
-        });
+                // Find the correct row to update
+                const rows = document.querySelectorAll("table tbody tr");
+                rows.forEach((row) => {
+                    const rowFarmId = row.querySelector("td").innerText;
+                    if (rowFarmId === farmId) {
+                        const cells = row.querySelectorAll("td");
+                        cells[1].innerText = farmName;
+                        cells[2].innerText = location;
+                        cells[3].innerText = size;
+                        cells[4].innerText = waterSource;
+                        cells[5].innerText = plotSize;
+                        cells[6].innerText = plotType;
+                        cells[7].innerText = soilCondition;
+                        cells[9].innerText = status;
+                        }
+                });
 
-        // Close the modal
-        const editModal = bootstrap.Modal.getInstance(document.getElementById("editFarmModal"));
-        editModal.hide();
-    });
+                // Tutup modal
+                const editModal = document.getElementById("editFarmModal");
+                const modalInstance = bootstrap.Modal.getInstance(editModal);
+                modalInstance.hide();
+                    
+            });
 
-    // Delete farm
-    document.addEventListener("click", function (e) {
-        if (e.target.classList.contains("delete-btn")) {
-            const row = e.target.closest("tr");
-            const farmId = row.cells[0].textContent;
-            document.getElementById("deleteFarmId").value = farmId;
-        }
-    });
+            // Delete farm
+            document.addEventListener("click", function (e) {
+                if (e.target.classList.contains("delete-btn")) {
+                    const row = e.target.closest("tr");
+                    const farmId = row.cells[0].textContent;
+                    document.getElementById("deleteFarmId").value = farmId;
+                }
+            });
 
-    document.getElementById("deleteFarmForm").addEventListener("submit", function (e) {
-        e.preventDefault();
+            // Delete booking upon confirmation
+            document.getElementById("deleteFarmForm").addEventListener("submit", function (e) {
+                e.preventDefault();
 
-        const farmId = document.getElementById("deleteFarmId").value;
-        const rows = document.querySelectorAll("table tbody tr");
-        rows.forEach(row => {
-            if (row.cells[0].textContent === farmId) {
-                row.remove();
-            }
-        });
+                const farmId = document.getElementById("deleteFarmId").value;
+                
+                // Find and remove the row from the table
+                const rows = document.querySelectorAll("table tbody tr");
+                rows.forEach(row => {
+                    if (row.cells[0].textContent === farmId) {
+                        row.remove();
+                    }
+                });
 
-        // Close the modal
-        const deleteModal = bootstrap.Modal.getInstance(document.getElementById("deleteFarmModal"));
-        deleteModal.hide();
-    });
-});
+                // Close the modal
+                const deleteModal = bootstrap.Modal.getInstance(document.getElementById("deleteFarmModal"));
+                    eleteModal.hide();
+            });
+            
 
         </script>
         
