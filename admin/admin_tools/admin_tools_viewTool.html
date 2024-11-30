@@ -94,7 +94,7 @@
                 <table class="table table-bordered table-striped">
                     <thead class="table-light">
                         <tr>
-                            <th>tool ID</th>
+                            <th>Tool ID</th>
                             <th>Tool Name</th>
                             <th>Tool Type</th>
                             <th>Farmer ID</th>
@@ -219,11 +219,9 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
-                        <div class="mb-3">
-                            <label for="editToolId" class="form-label">Tool ID</label>
-                            <input type="text" class="form-control" id="editToolId" placeholder="Enter Tool ID">
-                        </div>
+                    <form id="editToolForm">
+                        <input type="hidden" id="editToolId">
+
                         <div class="mb-3">
                             <label for="editToolName" class="form-label">Tool Name</label>
                             <input type="text" class="form-control" id="editToolName" placeholder="Enter Tool Name">
