@@ -301,6 +301,41 @@
                 document.getElementById('editApprovalDate').value = approvalDate;
             });
         });
+
+        // Add the JavaScript code for "Approve" and "Reject" button functionality here.
+        const approveButtons = document.querySelectorAll('.btn-success');
+        const rejectButtons = document.querySelectorAll('.btn-warning');
+        
+        // Approve button logic
+        approveButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const row = this.closest('tr');
+                const toolId = row.cells[0].textContent;
+                if (confirm(`Are you sure you want to approve Tool ID: ${toolId}?`)) {
+                    row.querySelector('.text-warning').classList.remove('text-warning');
+                    row.querySelector('.text-warning').classList.add('text-success');
+                    row.querySelector('.text-warning').textContent = "Approved";
+                    this.disabled = true;
+                    row.querySelector('.btn-warning').disabled = true;
+                }
+            });
+        });
+
+        // Reject button logic
+        rejectButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const row = this.closest('tr');
+                const toolId = row.cells[0].textContent;
+                if (confirm(`Are you sure you want to reject Tool ID: ${toolId}?`)) {
+                    row.querySelector('.text-warning').classList.remove('text-warning');
+                    row.querySelector('.text-warning').classList.add('text-danger');
+                    row.querySelector('.text-warning').textContent = "Rejected";
+                    this.disabled = true;
+                    row.querySelector('.btn-success').disabled = true;
+                }
+            });
+        });
+
     </script>  
 </body>
 </html>

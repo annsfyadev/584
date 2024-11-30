@@ -217,14 +217,17 @@
     <script>
         const links = document.querySelectorAll('.sidebar a');
         const contentDiv = document.querySelector('.content');
-
+    
         function loadContent(file) {
             fetch(file)
                 .then(response => response.ok ? response.text() : Promise.reject("Error loading file"))
-                .then(data => contentDiv.innerHTML = data)
+                .then(data => {
+                    contentDiv.innerHTML = data;
+                    attachButtonHandlers(); // Attach handlers after content load
+                })
                 .catch(error => contentDiv.innerHTML = `<p>Error: ${error}</p>`);
         }
-
+    
         links.forEach(link => {
             link.addEventListener('click', e => {
                 e.preventDefault();
@@ -232,7 +235,46 @@
                 if (file) loadContent(file);
             });
         });
-    </script>
-
+    
+        function attachButtonHandlers() {
+            const approveButtons = contentDiv.querySelectorAll('.btn-success');
+            const rejectButtons = contentDiv.querySelectorAll('.btn-warning');
+    
+            // Approve button logic
+            approveButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const row = this.closest('tr');
+                    const toolId = row ? row.cells[0].textContent : 'N/A';
+                    if (confirm(`Are you sure you want to approve Tool ID: ${toolId}?`)) {
+                        const statusCell = row.querySelector('.status');
+                        statusCell.textContent = "Approved";
+                        statusCell.className = 'status text-success';
+                        this.disabled = true;
+                        const rejectButton = row.querySelector('.btn-warning');
+                        if (rejectButton) rejectButton.disabled = true;
+                    }
+                });
+            });
+    
+            // Reject button logic
+            rejectButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const row = this.closest('tr');
+                    const toolId = row ? row.cells[0].textContent : 'N/A';
+                    if (confirm(`Are you sure you want to reject Tool ID: ${toolId}?`)) {
+                        const statusCell = row.querySelector('.status');
+                        statusCell.textContent = "Rejected";
+                        statusCell.className = 'status text-danger';
+                        this.disabled = true;
+                        const approveButton = row.querySelector('.btn-success');
+                        if (approveButton) approveButton.disabled = true;
+                    }
+                });
+            });
+        }
+    
+        // Initial handler attachment
+        attachButtonHandlers();
+    </script>    
 </body>
 </html>
