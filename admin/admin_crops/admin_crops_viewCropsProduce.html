@@ -48,6 +48,8 @@
                         entries
                     </label>
                 </div>
+                <!-- Button to trigger modal -->
+            <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addCropModal">Add Crop</button>
             </div>
 
             <!-- Table for Crops Produce -->
@@ -55,25 +57,30 @@
                 <table class="table table-bordered table-striped">
                     <thead class="table-light">
                         <tr>
-                            <th>Farmer ID</th>
                             <th>Crops Produce ID</th>
+                            <th>Farmer Email</th>
                             <th>Crop Type</th>
                             <th>Crops Produce Date</th>
                             <th>Quantity</th>
-                            <th>Action</th>
+                            <th>Storage Location</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
                         <!-- Example Data - Dynamically populate this from your database -->
                         <tr>
-                            <td>4</td>
                             <td>001</td>
+                            <td>han@gmail.com</td>
                             <td>Rice</td>
                             <td>2024-11-01</td>
                             <td>500 kg Rice</td>
+                            <td>Tongkang Pechah, Batu Pahat</td>
                             <td>
-                                <!-- Actions for Crops Produce (Edit/Delete) -->
+                                
                                 <button class="btn btn-primary btn-edit" data-bs-toggle="modal" data-bs-target="#editProduceModal" data-produce-id="001" data-crop-type="Rice" data-produce-date="2024-11-01" data-quantity="500 kg">Edit</button>
+                            </td>
+                            <td>
                                 <button class="btn btn-danger btn-delete" data-bs-toggle="modal" data-bs-target="#deleteProduceModal" data-produce-id="001">Delete</button>
                             </td>                            
                         </tr>
@@ -95,8 +102,61 @@
         </div>
     </div>
 
+    <!-- Add Crop Modal -->
+    <div class="modal fade" id="addCropModal" tabindex="-1" aria-labelledby="addCropModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addCropModalLabel">Add New Crop</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="add_crop.php">
+                        <div class="mb-3">
+                            <label for="farmerEmail" class="form-label">Farmer Email</label>
+                            <input type="email" class="form-control" id="farmerEmail" name="farmer_email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="plot" class="form-label">Select Plot</label>
+                            <select class="form-select" id="plot" name="plot_id">
+                                <option value="101">Plot 1</option>
+                                <option value="102">Plot 2</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="cropType" class="form-label">Select Crop Type</label>
+                            <select class="form-select" id="cropType" name="crop_type_id">
+                                <option value="1">Corn</option>
+                                <option value="2">Wheat</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="plantingDate" class="form-label">Planting Date</label>
+                            <input type="date" class="form-control" id="plantingDate" name="planting_date">
+                        </div>
+                        <div class="mb-3">
+                            <label for="harvestDate" class="form-label">Harvest Date</label>
+                            <input type="date" class="form-control" id="harvestDate" name="harvest_date">
+                        </div>
+                        <div class="mb-3">
+                            <label for="yield" class="form-label">Yield</label>
+                            <input type="text" class="form-control" id="yield" name="yield">
+                        </div>
+                        <div class="mb-3">
+                            <label for="storageLocation" class="form-label">Storage Location</label>
+                            <input type="text" class="form-control" id="storageLocation" name="storage_location" placeholder="Enter storage location">
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-dark">Add Crop</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <!-- Edit Produce Modal -->
+    <!-- Edit Crop Modal -->
     <div class="modal fade" id="editProduceModal" tabindex="-1" aria-labelledby="editProduceModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -106,7 +166,10 @@
                 </div>
                 <div class="modal-body">
                     <form>
-                        <input type="hidden" id="editProduceId"> <!-- Hidden ID for the produce being edited -->
+                        <div class="mb-3">
+                            <label for="editFarmerEmail" class="form-label">Farmer Email</label>
+                            <input type="email" class="form-control" id="editFarmerEmail" placeholder="Enter Farmer Email" required>
+                        </div>
                         <div class="mb-3">
                             <label for="editCropType" class="form-label">Crop Type</label>
                             <select class="form-select" id="editCropType">
@@ -124,6 +187,10 @@
                             <label for="cropsProduceQuantity" class="form-label">Quantity</label>
                             <input type="text" class="form-control" id="cropsProduceQuantity" placeholder="Enter quantity (e.g., 200kg Wheat)">
                         </div>
+                        <div class="mb-3">
+                            <label for="editStorageLocation" class="form-label">Storage Location</label>
+                            <input type="text" class="form-control" id="editStorageLocation" placeholder="Enter storage location">
+                        </div>
                         <button type="submit" class="btn btn-primary">Save Changes</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     </form>
@@ -131,6 +198,7 @@
             </div>
         </div>
     </div>
+
 
     <!-- Delete Produce Modal -->
     <div class="modal fade" id="deleteProduceModal" tabindex="-1" aria-labelledby="deleteProduceModalLabel" aria-hidden="true">
