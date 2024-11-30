@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="styles1.css"> <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="styles1.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -74,38 +75,47 @@
             text-align: center;
         }
 
-        /* Admin Dashboard Info Section */
+        /* Dashboard Info Section */
         .dashboard-info {
             margin-top: 40px;
+            background-image: url('../user/image/no1.jpg'); /* Replace with your image path */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .dashboard-info h2 {
             font-size: 1.5em;
-            color: #ff7200;
+            color: #ffffff;
             margin-bottom: 20px;
             text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
 
         .info-box {
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-around;
             margin-top: 20px;
         }
 
         .info-box .box {
-            background-color: #f4f4f4;
+            background-color: rgba(255, 255, 255, 0.8);
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             text-align: center;
-            flex: 1;
-            margin: 0 10px;
+            flex: 0 0 calc(50% - 20px);
+            margin: 10px;
             border-left: 5px solid #ff7200;
         }
 
         .info-box .box h3 {
             font-size: 1.2em;
-            color: #ff7200;
+            color: #333;
             margin-bottom: 10px;
         }
 
@@ -137,35 +147,29 @@
     <div class="sidebar">
         <h2>Admin CFS</h2>
 
-        <!-- Farm Overview Section -->
         <div class="section">
-            <h3>Farm Overview</h3>
+            <h3>Farm Management</h3>
             <a href="#" data-file="farm/manage_farm.html" aria-label="Manage Farms">Manage Farms</a>
         </div>
 
-          <!-- Animal Overview Section -->
-          <div class="section">
+        <div class="section">
             <h3>Animal Management</h3>
-            <!-- <a href="#" data-file="admin_animal/admin_animal_mainpage.html" aria-label="Manage Animals">Overview</a> -->
-            <a href="#" data-file="admin_animal/admin_animal_viewAnimalManagement.html" aria-label="Manage Animal">Animal</a>
-            <a href="#" data-file="admin_animal/admin_animal_viewAnimalProduce.html" aria-label="View Animal Produce ">Produce</a>
+            <a href="#" data-file="admin_animal/admin_animal_viewAnimalManagement.html" aria-label="Manage Animals">Animals</a>
+            <a href="#" data-file="admin_animal/admin_animal_viewAnimalProduce.html" aria-label="Manage Produce">Produce</a>
         </div>
 
-        <!-- Tool Management Section -->
         <div class="section">
             <h3>Tool Management</h3>
             <a href="#" data-file="tools/tool_list.html" aria-label="View Tools">Tool List</a>
             <a href="#" data-file="tools/manage_tools.html" aria-label="Manage Tools">Manage Tools</a>
         </div>
 
-        <!-- System Settings Section -->
         <div class="section">
             <h3>System Settings</h3>
-            <a href="#" data-file="settings/system_settings.html" aria-label="View System Settings">Settings</a>
-            <a href="#" data-file="settings/change_password.html" aria-label="Change Admin Password">Change Password</a>
+            <a href="#" data-file="settings/system_settings.html" aria-label="System Settings">Settings</a>
+            <a href="#" data-file="settings/change_password.html" aria-label="Change Password">Change Password</a>
         </div>
 
-        <!-- Logout -->
         <div class="section">
             <a href="#" data-file="logout.html" aria-label="Logout">Logout</a>
         </div>
@@ -174,7 +178,6 @@
     <div class="content">
         <h1>Welcome Admin</h1>
 
-        <!-- Admin Dashboard Info Section -->
         <div class="dashboard-info">
             <h2>Quick Overview</h2>
             <div class="info-box">
@@ -190,43 +193,26 @@
                     <h3>Total Tools</h3>
                     <p>200</p>
                 </div>
-               
             </div>
         </div>
     </div>
 
     <script>
-        // Select all sidebar links
         const links = document.querySelectorAll('.sidebar a');
         const contentDiv = document.querySelector('.content');
 
-        // Function to load a file into the content area
         function loadContent(file) {
             fetch(file)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`Could not load file: ${file}`);
-                    }
-                    return response.text();
-                })
-                .then(data => {
-                    contentDiv.innerHTML = data;
-                })
-                .catch(error => {
-                    contentDiv.innerHTML = `<p>Error: ${error.message}</p>`;
-                });
+                .then(response => response.ok ? response.text() : Promise.reject("Error loading file"))
+                .then(data => contentDiv.innerHTML = data)
+                .catch(error => contentDiv.innerHTML = `<p>Error: ${error}</p>`);
         }
 
-        // Attach click event listeners to each link
         links.forEach(link => {
-            link.addEventListener('click', (e) => {
+            link.addEventListener('click', e => {
                 e.preventDefault();
                 const file = e.target.getAttribute('data-file');
-                if (file) {
-                    loadContent(file);
-                } else {
-                    console.error("No file attribute found.");
-                }
+                if (file) loadContent(file);
             });
         });
     </script>
