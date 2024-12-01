@@ -113,38 +113,29 @@
                 <div class="modal-body">
                     <form method="POST" action="add_crop.php">
                         <div class="mb-3">
-                            <label for="farmerEmail" class="form-label">Farmer Email</label>
-                            <input type="email" class="form-control" id="farmerEmail" name="farmer_email" required>
+                            <label for="addFarmerEmail" class="form-label">Farmer Email</label>
+                            <input type="email" class="form-control" id="addFarmerEmail" name="farmer_email" placeholder="Enter Farmer Email" required>
                         </div>
                         <div class="mb-3">
-                            <label for="plot" class="form-label">Select Plot</label>
-                            <select class="form-select" id="plot" name="plot_id">
-                                <option value="101">Plot 1</option>
-                                <option value="102">Plot 2</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="cropType" class="form-label">Select Crop Type</label>
-                            <select class="form-select" id="cropType" name="crop_type_id">
+                            <label for="addCropType" class="form-label">Crop Type</label>
+                            <select class="form-select" id="addCropType" name="crop_type_id" required>
                                 <option value="1">Corn</option>
                                 <option value="2">Wheat</option>
+                                <option value="3">Soybean</option>
+                                <option value="4">Rice</option>
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="plantingDate" class="form-label">Planting Date</label>
-                            <input type="date" class="form-control" id="plantingDate" name="planting_date">
+                            <label for="addCropProduceDate" class="form-label">Crop Produce Date</label>
+                            <input type="date" class="form-control" id="addCropProduceDate" name="produce_date" required>
                         </div>
                         <div class="mb-3">
-                            <label for="harvestDate" class="form-label">Harvest Date</label>
-                            <input type="date" class="form-control" id="harvestDate" name="harvest_date">
+                            <label for="addQuantity" class="form-label">Quantity</label>
+                            <input type="text" class="form-control" id="addQuantity" name="quantity" placeholder="Enter quantity (e.g., 200kg)" required>
                         </div>
                         <div class="mb-3">
-                            <label for="yield" class="form-label">Yield</label>
-                            <input type="text" class="form-control" id="yield" name="yield">
-                        </div>
-                        <div class="mb-3">
-                            <label for="storageLocation" class="form-label">Storage Location</label>
-                            <input type="text" class="form-control" id="storageLocation" name="storage_location" placeholder="Enter storage location">
+                            <label for="addStorageLocation" class="form-label">Storage Location</label>
+                            <input type="text" class="form-control" id="addStorageLocation" name="storage_location" placeholder="Enter storage location" required>
                         </div>
                         <div class="d-flex justify-content-end">
                             <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">Cancel</button>
