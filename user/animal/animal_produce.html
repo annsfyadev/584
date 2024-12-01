@@ -60,6 +60,7 @@
                             <th>Animal Type</th>
                             <th>Animal Produce Date</th>
                             <th>Quantity</th>
+                            <th>Storage Location</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -70,6 +71,7 @@
                             <td>cow</td>
                             <td>2024-11-01</td>
                             <td>200kg Milk</td>
+                            <td>Pokok Sena, Kedah</td>
                             <td>
                                 <!-- Actions for Animal Produce (Edit/Delete) -->
                                 <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editProduceModal" 
@@ -123,6 +125,10 @@
                             <label for="animalProduceQuantity" class="form-label">Quantity</label>
                             <input type="text" class="form-control" id="animalProduceQuantity" placeholder="Enter quantity (e.g., 100kg Milk)">
                         </div>
+                        <div class="mb-3">
+                            <label for="storageLocation" class="form-label">Storage Location</label>
+                            <input type="text" class="form-control" id="storageLocation" placeholder="Enter storage location">
+                        </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     </form>
@@ -157,6 +163,10 @@
                         <div class="mb-3">
                             <label for="editAnimalProduceQuantity" class="form-label">Quantity</label>
                             <input type="text" class="form-control" id="editAnimalProduceQuantity" placeholder="Enter quantity (e.g., 100kg Milk)">
+                        </div>
+                        <div class="mb-3">
+                            <label for="editAnimalStorageLocation" class="form-label">Storage Location</label>
+                            <input type="text" class="form-control" id="editAnimalStorageLocation" >
                         </div>
                         <button type="submit" class="btn btn-primary">Save Changes</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -201,11 +211,13 @@
                 var animalType = this.getAttribute('data-animal-type');
                 var produceDate = this.getAttribute('data-produce-date');
                 var quantity = this.getAttribute('data-quantity');
+                var storageLocation = this.getAttribute('data-storage-location');
 
                 // Set data in the edit modal
                 document.getElementById('editAnimalType').value = animalType;
                 document.getElementById('editAnimalProduceDate').value = produceDate;
                 document.getElementById('editAnimalProduceQuantity').value = quantity;
+                document.getElementById('editAnimalStorageLocation').value = storageLocation;
             });
         });
 
